@@ -2,4 +2,7 @@ Ever wonder what the color code of the resisotor you are looking for is? Well, t
 
 <!-- more -->
 
-For the final project I plan to create a program that will calculate the resistor color code based on a value passed in as an argument. I plan to create error checking to make sure the user is entering a valid number. This program will embody the unix philosophy because it will be simple and allow for expansion upon it due to its simple nature.
+To make run 'clang -o main main.c'
+Then run './main <insert resistance value here>'
+
+For the final project I am creating a program that will calculate the resistor color code based on a value passed in as an argument. I plan to create error checking to make sure the user is entering a valid number. This program will be simple and allow for expansion upon it. Currently the user can only enter a resistor value and the color bands will be returned, but I plan to allow for the reverse so the user can enter the color bands as arguments and will recieve a resistance value. 
