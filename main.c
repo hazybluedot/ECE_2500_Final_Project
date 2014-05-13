@@ -3,7 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-void getColor(int);
+void getColor1and2(int);
+void getColor3(long);
 
 int main(int argc, char *argv[]) {
 
@@ -12,80 +13,30 @@ int main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    int val = strtol(argv[1], NULL, 10);
-    if (val == 0) {
+    char* end;
+    long val = strtol(argv[1], &end, 10);
+    int digit1 = argv[1][0] - '0';
+    int digit2 = argv[1][1] - '0';
+    if ( *end != '\0') {
         printf("Please enter a valid resistor value\n");
         exit(-1);
     }
 
-    if (val / 100000000 > 0) {
-        printf("First Band: ");
-        getColor(val/100000000);
-        printf("Second Band: ");
-        getColor(val/10000000 - (val/100000000 * 10));
-        printf("Third Band: ");
-        printf("Violet\n");
+    if (val < 10 || val > 9900000000) {
+        printf("Please enter a resistor value between 10 and 9900000000\n");
+        exit(-1);
     }
-    else if (val / 10000000 > 0) {
-        printf("First Band: ");
-        getColor(val/10000000);
-        printf("Second Band: ");
-        getColor(val/1000000 - (val/10000000 * 10));
-        printf("Third Band: ");
-        printf("Blue\n");
-    }
-    else if (val / 1000000 > 0) {
-        printf("First Band: ");
-        getColor(val/1000000);
-        printf("Second Band: ");
-        getColor(val/100000 - (val/1000000 * 10));
-        printf("Third Band: ");
-        printf("Green\n");
-    }
-    else if (val / 100000 > 0) {
-        printf("First Band: ");
-        getColor(val/100000);
-        printf("Second Band: ");
-        getColor(val/10000 - (val/100000 * 10));
-        printf("Third Band: ");
-        printf("Yellow\n");
-    }
-    else if (val / 10000 > 0) {
-        printf("First Band: ");
-        getColor(val/10000);
-        printf("Second Band: ");
-        getColor(val/1000 - (val/10000 * 10));
-        printf("Third Band: ");
-        printf("Orange\n");
-    }
-    else if (val / 1000 > 0) {
-        printf("First Band: ");
-        getColor(val/1000);
-        printf("Second Band: ");
-        getColor(val/100 - (val/1000 * 10));
-        printf("Third Band: ");
-        printf("Red\n");
-    }
-   else if (val / 100 > 0) {
-        printf("First Band: ");
-        getColor(val/100);
-        printf("Second Band: ");
-        getColor(val/10 - (val/100 * 10));
-        printf("Third Band: ");
-        printf("Brown\n");
-    }
-    else if (val / 1 > 0) {
-        printf("First Band: ");
-        getColor(val/10);
-        printf("Second Band: ");
-        getColor(val/1 - (val/10 * 10));
-        printf("Third Band: ");
-        printf("Black\n");
-    }
+
+    printf("First Band: ");
+    getColor1and2(digit1);
+    printf("Second Band: ");
+    getColor1and2(digit2);
+    printf("Third Band: ");
+    getColor3(val);
 }
 
-void getColor(int i) {
-    if(i == 0)
+void getColor1and2(int i) {
+    if (i == 0)
         printf("Black\n");
     else if (i == 1)
         printf("Brown\n");
@@ -105,4 +56,23 @@ void getColor(int i) {
         printf("Grey\n");
     else if (i == 9)
         printf("White\n");
+}
+
+void getColor3(long i) {
+    if (i / 100000000 > 0)
+        printf("Violet\n");
+    else if (i / 10000000 > 0)
+        printf("Blue\n");
+    else if (i / 1000000 > 0)
+        printf("Green\n");
+    else if (i / 100000 > 0)
+        printf("Yellow\n");
+    else if (i / 10000 > 0)
+        printf("Orange\n");
+    else if (i / 1000 > 0)
+        printf("Red\n");
+    else if (i / 100 > 0)
+        printf("Brown\n");
+    else if (i / 10 > 0)
+        printf("Black\n");
 }
