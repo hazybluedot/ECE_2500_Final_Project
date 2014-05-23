@@ -27,11 +27,8 @@ int main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    printf("First Band: ");
     getColor1and2(digit1);
-    printf("Second Band: ");
     getColor1and2(digit2);
-    printf("Third Band: ");
     getColor3(val);
 }
 
