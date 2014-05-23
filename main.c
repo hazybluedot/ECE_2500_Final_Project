@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-void getColor1and2(int);
-void getColor3(long);
+const char* getColor1and2(int);
+const char* getColor3(long);
 int  valueToColor(const char*);
 
 void usage(FILE* fp, int status, const char* progname) {
@@ -52,50 +52,52 @@ int valueToColor(const char* str) {
         return -1;
     }
 
-    getColor1and2(digit1);
-    getColor1and2(digit2);
-    getColor3(val);
+    printf("%s %s %s\n", getColor1and2(digit1), getColor1and2(digit2), getColor3(val));
     return 0;
 }
 
-void getColor1and2(int i) {
+const char* getColor1and2(int i) {
     if (i == 0)
-        printf("Black\n");
+        return "black";
     else if (i == 1)
-        printf("Brown\n");
+        return "brown";
     else if (i == 2)
-        printf("Red\n");
+        return "red";
     else if (i == 3)
-        printf("Orange\n");
+        return "orange";
     else if (i == 4)
-        printf("Yellow\n");
+        return "yellow";
     else if (i == 5)
-        printf("Green\n");
+        return "green";
     else if (i == 6)
-        printf("Blue\n");
+        return "blue";
     else if (i == 7)
-        printf("Violet\n");
+        return "violet";
     else if (i == 8)
-        printf("Grey\n");
+        return "grey";
     else if (i == 9)
-        printf("White\n");
+        return "white";
+    else 
+        return "xxx";
 }
 
-void getColor3(long i) {
+const char* getColor3(long i) {
     if (i / 100000000 > 0)
-        printf("Violet\n");
+        return "violet";
     else if (i / 10000000 > 0)
-        printf("Blue\n");
+        return "blue";
     else if (i / 1000000 > 0)
-        printf("Green\n");
+        return "green";
     else if (i / 100000 > 0)
-        printf("Yellow\n");
+        return "yellow";
     else if (i / 10000 > 0)
-        printf("Orange\n");
+        return "orange";
     else if (i / 1000 > 0)
-        printf("Red\n");
+        return "red";
     else if (i / 100 > 0)
-        printf("Brown\n");
+        return "brown";
     else if (i / 10 > 0)
-        printf("Black\n");
+        return "black";
+    else
+        return "xxx";
 }
