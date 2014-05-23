@@ -5,6 +5,7 @@
 
 void getColor1and2(int);
 void getColor3(long);
+int  valueToColor(const char*);
 
 int main(int argc, char *argv[]) {
 
@@ -13,18 +14,26 @@ int main(int argc, char *argv[]) {
         exit(-1);
     }
 
-    char* end;
-    long val = strtol(argv[1], &end, 10);
-    int digit1 = argv[1][0] - '0';
-    int digit2 = argv[1][1] - '0';
-    if ( *end != '\0') {
+	if (valueToColor(argv[1]) < 0) {
         printf("Please enter a valid resistor value\n");
+		exit(-1);
+	}
+	return 0;
+}
+
+
+int valueToColor(const char* str) {	
+    char* end;
+    long val = strtol(str, &end, 10);
+    int digit1 = str[0] - '0';
+    int digit2 = str[1] - '0';
+    if ( *end != '\0') {
         exit(-1);
     }
 
     if (val < 10 || val > 9900000000) {
         printf("Please enter a resistor value between 10 and 9900000000\n");
-        exit(-1);
+		return -1;
     }
 
     printf("First Band: ");
@@ -33,6 +42,7 @@ int main(int argc, char *argv[]) {
     getColor1and2(digit2);
     printf("Third Band: ");
     getColor3(val);
+	return 0;
 }
 
 void getColor1and2(int i) {
