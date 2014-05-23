@@ -7,18 +7,21 @@ void getColor1and2(int);
 void getColor3(long);
 int  valueToColor(const char*);
 
+void usage(FILE* fp, int status, const char* progname) {
+    fprintf(fp, "Usage: %s value\n", progname);
+    exit(status);
+}
+
 int main(int argc, char *argv[]) {
 
     if ( argc != 2 ) {
-        fprintf(stderr, "Usage: %s value\n", argv[0]);
-        exit(-1);
+        usage(stderr, 1, argv[0]);
     }
 
-	if (valueToColor(argv[1]) < 0) {
-        printf("Please enter a valid resistor value\n");
-		exit(-1);
-	}
-	return 0;
+    if (valueToColor(argv[1]) < 0) {
+        usage(stderr, 1, argv[0]);
+    }
+    return 0;
 }
 
 
