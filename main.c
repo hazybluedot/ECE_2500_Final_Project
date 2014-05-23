@@ -28,18 +28,17 @@ int valueToColor(const char* str) {
     int digit1 = str[0] - '0';
     int digit2 = str[1] - '0';
     if ( *end != '\0') {
-        exit(-1);
+        return -1;
     }
 
     if (val < 10 || val > 9900000000) {
-        printf("Please enter a resistor value between 10 and 9900000000\n");
-		return -1;
+        return -1;
     }
 
     getColor1and2(digit1);
     getColor1and2(digit2);
     getColor3(val);
-	return 0;
+    return 0;
 }
 
 void getColor1and2(int i) {
