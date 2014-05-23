@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <assert.h>
 
 typedef struct {
     const char* color;
@@ -32,7 +34,7 @@ void usage(FILE* fp, int status, const char* progname) {
 }
 
 const char* getColor(int i) {
-    if ( i >= COLOR_TABLE_LEN )
+    if ( (size_t)i >= COLOR_TABLE_LEN )
         return "\0";
     return color_table[i].color;
 }
@@ -52,6 +54,8 @@ int main(int argc, char *argv[]) {
     char *line = NULL;
     size_t len = 0;
     ssize_t read;
+
+    assert(COLOR_TABLE_LEN <= INT_MAX); /* sanity check */
 
     if (argc > 1) {
         ++argv; /* skip over program name */
