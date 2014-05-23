@@ -13,14 +13,28 @@ void usage(FILE* fp, int status, const char* progname) {
 }
 
 int main(int argc, char *argv[]) {
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
 
-    if ( argc != 2 ) {
-        usage(stderr, 1, argv[0]);
+    if (argc > 1) {
+        ++argv; /* skip over program name */
+        do {
+            if (valueToColor(*argv) < 0) {
+                usage(stderr, 1, argv[0]);
+            }         
+        } while(*++argv);
+    } else {
+        while((read = getline(&line, &len, stdin)) != -1) {
+            line[read-1] = '\0';
+            if (valueToColor(line) < 0) {
+                usage(stderr, 1, argv[0]);
+            }
+        }
     }
+    
+    free(line);
 
-    if (valueToColor(argv[1]) < 0) {
-        usage(stderr, 1, argv[0]);
-    }
     return 0;
 }
 
