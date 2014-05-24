@@ -1,0 +1,10 @@
+.START
+..refdes	device	value	footprint	quantity
+C1	CAPACITOR	0.1u	unknown	1
+C2	CAPACITOR	0.1u	unknown	1
+R1	RESISTOR	10k	unknown	1
+R2	RESISTOR	10k	unknown	1
+RA	RESISTOR	10k	unknown	1
+RB	RESISTOR	5.5k	unknown	1
+U1	OPAMP	unknown	unknown	1
+.END
